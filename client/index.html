@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIH Vision Agent</title>
+    <style>
+      body {
+        width: 320px;
+        font-family: system-ui, -apple-system, sans-serif;
+        padding: 16px;
+        background-color: #f8f9fa;
+      }
+      h2 {
+        margin-top: 0;
+        font-size: 18px;
+        color: #202124;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      button:hover {
+        background-color: #1557b0;
+      }
+      #status {
+        margin-top: 12px;
+        font-size: 14px;
+        color: #5f6368;
+        font-weight: bold;
+      }
+      #resultBox {
+        margin-top: 12px;
+        padding: 10px;
+        background: white;
+        border: 1px solid #dadce0;
+        border-radius: 4px;
+        font-size: 13px;
+        color: #3c4043;
+        white-space: pre-wrap;
+        display: none;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+      .hidden { display: none; }
+    </style>
+  </head>
+  <body>
+    <h2>Privacy Vision Agent</h2>
+    <p style="font-size: 13px; color: #5f6368;">Sanitizes your screen before AI processing.</p>
+    
+    <input type="text" id="userCommand" placeholder="What should I do? (e.g., Click Search)" style="width: 100%; box-sizing: border-box; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+    <button id="captureBtn">Analyze & Execute</button>
+    
+    <div id="status">Ready</div>
+    <div id="resultBox"></div>
+    
+    <div id="preview-container" class="hidden">
+      <h3>Redacted Preview (Sent to AI)</h3>
+      <img id="image-preview" src="" alt="Redacted Screen" style="width: 100%; border-radius: 4px; border: 1px solid #ccc; margin-top: 10px;" />
+    </div>
+
+    <script type="module">
+      document.getElementById('captureBtn').addEventListener('click', async () => {
+        const status = document.getElementById('status');
+        const userCommand = document.getElementById('userCommand').value;
+        
+        status.innerText = 'Agent Loop Started in Background! You can close this popup.';
+        
+        chrome.runtime.sendMessage({ action: 'startAgentLoop', command: userCommand }, (response) => {
+          if (response && response.success) {
+            console.log("Agent started.");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
