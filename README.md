@@ -1,4 +1,4 @@
-# 🛡️ Privacy Vision Agent
+#  Privacy Vision Agent
 
 An open-source, privacy-preserving autonomous web agent built for the **Smart India Hackathon (SIH)**. 
 
@@ -6,16 +6,16 @@ This browser extension uses **on-device AI** to visually redact sensitive data (
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-* 🧠 **Autonomous Agentic Loop**: You give it a high-level goal (e.g., *"Search for NASA and open their page"*). The agent will perceive the DOM, reason about the UI, and execute clicks/types autonomously until the goal is met.
-* 🔒 **Zero-Trust Local Redaction**: Uses `Transformers.js` (Yolov-tiny) running directly inside a Chrome Manifest V3 background worker to detect faces and visually draw black boxes over them locally. Your sensitive visual data never leaves your browser.
-* 🎯 **Set-of-Marks (SoM) Navigation**: Injects visual markers over clickable elements before taking a screenshot, allowing the Cloud Vision Model to precisely target elements without needing raw HTML dumps.
-* 🚀 **Multi-Model Fallback Cascade**: If the primary Gemini 3.6 Flash model hits a rate limit (429) or goes down (503), the backend gracefully cascades to Gemini 3.5 Flash or Flash-Lite to ensure 100% uptime during demos.
+*  **Autonomous Agentic Loop**: You give it a high-level goal (e.g., *"Search for NASA and open their page"*). The agent will perceive the DOM, reason about the UI, and execute clicks/types autonomously until the goal is met.
+*  **Zero-Trust Local Redaction**: Uses `Transformers.js` (Yolov-tiny) running directly inside a Chrome Manifest V3 background worker to detect faces and visually draw black boxes over them locally. Your sensitive visual data never leaves your browser.
+*  **Set-of-Marks (SoM) Navigation**: Injects visual markers over clickable elements before taking a screenshot, allowing the Cloud Vision Model to precisely target elements without needing raw HTML dumps.
+*  **Multi-Model Fallback Cascade**: If the primary Gemini 3.6 Flash model hits a rate limit (429) or goes down (503), the backend gracefully cascades to Gemini 3.5 Flash or Flash-Lite to ensure 100% uptime during demos.
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 1. **Perception**: The extension injects red numbered markers next to all interactive elements on the page (Set-of-Marks).
 2. **Local Redaction**: It captures a screenshot and runs the `yolos-tiny` object detection model locally to find and black-box human faces, as well as applying DOM-based masking for passwords.
@@ -25,7 +25,7 @@ This browser extension uses **on-device AI** to visually redact sensitive data (
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * **Frontend/Extension**: Vanilla JS, Chrome Extensions API (Manifest V3), Vite
 * **Local AI**: Transformers.js (ONNX Runtime Web), Yolov-tiny model
@@ -34,7 +34,7 @@ This browser extension uses **on-device AI** to visually redact sensitive data (
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Start the Backend Server
 The server acts as a secure middleware to communicate with the Gemini API.
@@ -72,7 +72,7 @@ npm run build
 
 ---
 
-## 🎮 Usage
+##  Usage
 
 1. Open any website (e.g., `https://en.wikipedia.org`).
 2. Click the **Privacy Vision Agent** extension icon.
